@@ -20,6 +20,14 @@
   ],
   "author": "Wattson",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chatde/apiguardrails.git"
+  },
+  "homepage": "https://apiguardrails.com",
+  "engines": {
+    "node": ">=16.0.0"
+  },
   "dependencies": {
     "@tailwindcss/postcss": "^4.2.0",
     "next": "^16.1.6",
