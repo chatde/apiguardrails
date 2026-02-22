@@ -1,0 +1,41 @@
+{
+  "name": "api-guardrails",
+  "version": "1.0.0",
+  "description": "AI API Terms of Service compliance checker — know what's allowed before you build.",
+  "type": "module",
+  "main": "./src/index.js",
+  "exports": {
+    ".": "./src/index.js"
+  },
+  "files": [
+    "src/",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "ai",
+    "api",
+    "compliance",
+    "terms-of-service",
+    "guardrails",
+    "openai",
+    "anthropic",
+    "claude",
+    "gemini",
+    "groq",
+    "mistral",
+    "cohere",
+    "tos",
+    "policy"
+  ],
+  "author": "Wattson",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chatde/apiguardrails.git"
+  },
+  "homepage": "https://apiguardrails.com",
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

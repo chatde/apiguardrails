@@ -65,6 +65,24 @@ The engine checks against 16 common use-case patterns:
 
 No AI calls. No server processing. Pure regex pattern matching against a curated rules database.
 
+## npm SDK
+
+The compliance engine is available as a standalone npm package — zero dependencies, works in Node.js and the browser.
+
+```bash
+npm install api-guardrails
+```
+
+```js
+import { analyzeCompliance, overallSummary } from 'api-guardrails';
+
+const findings = analyzeCompliance('build a chatbot with my own OpenAI key');
+const summary = overallSummary(findings);
+console.log(summary.verdict);  // 'allowed'
+```
+
+See the full [SDK documentation](sdk/README.md) for API details, rule categories, and provider coverage.
+
 ## Running locally
 
 ```bash
