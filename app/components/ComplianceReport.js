@@ -12,6 +12,13 @@ const verdictConfig = {
     text: 'text-success',
     icon: '✓',
   },
+  warning: {
+    label: 'Gray Area',
+    bg: 'bg-amber-500/10',
+    border: 'border-amber-500/30',
+    text: 'text-amber-500',
+    icon: '!',
+  },
   prohibited: {
     label: 'Likely Prohibited',
     bg: 'bg-danger/10',
@@ -43,10 +50,11 @@ function SummaryBanner({ summary }) {
   return (
     <div className={`${config.bg} border ${config.border} rounded-xl p-5 mb-6`}>
       <div className="flex items-start gap-3">
-        <span className={`text-2xl ${config.text}`}>{config.icon === '✓' ? '🛡️' : config.icon === '✗' ? '🚫' : '❓'}</span>
+        <span className={`text-2xl ${config.text}`}>{config.icon === '✓' ? '🛡️' : config.icon === '!' ? '⚠️' : config.icon === '✗' ? '🚫' : '❓'}</span>
         <div>
           <h3 className={`font-semibold text-lg ${config.text}`}>
             {summary.verdict === 'allowed' && 'Looks Good'}
+            {summary.verdict === 'warning' && 'Needs Review'}
             {summary.verdict === 'prohibited' && 'Potential Violation'}
             {summary.verdict === 'unknown' && 'No Matches Found'}
           </h3>

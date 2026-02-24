@@ -58,7 +58,7 @@ const rules = [
       groq: { verdict: 'prohibited', reason: 'Groq prohibits "avoiding fees" — commercial use on free tier risks violation.', tosSection: 'Terms §5' },
       cerebras: { verdict: 'prohibited', reason: 'Free tier license is "freely revocable" — not safe for production.', tosSection: 'Terms §1' },
       sambanova: { verdict: 'prohibited', reason: 'SambaNova explicitly prohibits commercial/production use on the free Community tier.', tosSection: 'Community Terms §2' },
-      mistral: { verdict: 'allowed', reason: 'Check your specific plan terms for commercial use details.', tosSection: 'Terms §3' },
+      mistral: { verdict: 'warning', reason: 'Check your specific plan terms for commercial use details.', tosSection: 'Terms §3' },
       cohere: { verdict: 'prohibited', reason: 'Trial tier is explicitly for evaluation only, not commercial use.', tosSection: 'Terms §2' },
     },
   },
@@ -71,10 +71,10 @@ const rules = [
       openai: { verdict: 'prohibited', reason: 'Using outputs to train models that compete with OpenAI is prohibited.', tosSection: 'Usage Policies' },
       anthropic: { verdict: 'prohibited', reason: 'Using outputs to train competing AI models is prohibited.', tosSection: 'API Terms §4' },
       google: { verdict: 'prohibited', reason: 'Using outputs to train competing foundation models is prohibited.', tosSection: 'Generative AI Use Policy' },
-      groq: { verdict: 'allowed', reason: 'Groq hosts open-source models — check the specific model license for training rights.', tosSection: 'Terms §5' },
-      cerebras: { verdict: 'allowed', reason: 'Models hosted are open-source, but check specific model licenses.', tosSection: 'Terms §4' },
+      groq: { verdict: 'warning', reason: 'Groq hosts open-source models — check the specific model license for training rights.', tosSection: 'Terms §5' },
+      cerebras: { verdict: 'warning', reason: 'Models hosted are open-source, but check specific model licenses.', tosSection: 'Terms §4' },
       sambanova: { verdict: 'prohibited', reason: 'Competing with SambaNova using their platform is prohibited.', tosSection: 'Community Terms §2' },
-      mistral: { verdict: 'allowed', reason: 'Open-weight models may allow this — check the specific model license.', tosSection: 'Terms §3' },
+      mistral: { verdict: 'warning', reason: 'Open-weight models may allow this — check the specific model license.', tosSection: 'Terms §3' },
       cohere: { verdict: 'prohibited', reason: 'Using Cohere infrastructure to compete with Cohere is prohibited.', tosSection: 'Terms §4' },
     },
   },
@@ -363,6 +363,7 @@ export function groupByProvider(findings) {
  */
 export function worstVerdict(providerFindings) {
   if (providerFindings.some((f) => f.verdict === 'prohibited')) return 'prohibited';
+  if (providerFindings.some((f) => f.verdict === 'warning')) return 'warning';
   return 'allowed';
 }
 
@@ -378,13 +379,21 @@ export function overallSummary(findings) {
   }
 
   const prohibited = findings.filter((f) => f.verdict === 'prohibited');
-  const allowed = findings.filter((f) => f.verdict === 'allowed');
+  const warned = findings.filter((f) => f.verdict === 'warning');
 
   if (prohibited.length > 0) {
     const providers = [...new Set(prohibited.map((f) => f.provider))];
     return {
       verdict: 'prohibited',
       message: `This usage pattern likely violates terms for ${providers.length} provider${providers.length > 1 ? 's' : ''}.`,
+    };
+  }
+
+  if (warned.length > 0) {
+    const providers = [...new Set(warned.map((f) => f.provider))];
+    return {
+      verdict: 'warning',
+      message: `This usage pattern has gray areas for ${providers.length} provider${providers.length > 1 ? 's' : ''}. Review the specific terms carefully.`,
     };
   }
 
