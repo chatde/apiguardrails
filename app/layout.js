@@ -1,5 +1,16 @@
+import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import Navbar from './components/Navbar';
+
+const geistSans = Geist({
+  variable: '--font-geist-sans',
+  subsets: ['latin'],
+});
+
+const geistMono = Geist_Mono({
+  variable: '--font-geist-mono',
+  subsets: ['latin'],
+});
 
 export const metadata = {
   title: 'API Guardrails — AI API Terms of Service Compliance Checker',
@@ -24,27 +35,31 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
-          rel="stylesheet"
-        />
-      </head>
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
       <body className="min-h-screen">
         <Navbar />
         <main>{children}</main>
-        <footer className="border-t border-border py-8 mt-20">
-          <div className="max-w-5xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4 text-text-muted text-sm">
-            <p>&copy; {new Date().getFullYear()} API Guardrails. Not legal advice.</p>
-            <div className="flex items-center gap-4">
-              <a href="/about" className="hover:text-text-secondary transition-colors">About</a>
-              <span className="text-border">|</span>
-              <a href="https://tokenshrink.com" target="_blank" rel="noopener noreferrer" className="hover:text-text-secondary transition-colors">
-                TokenShrink
-              </a>
+        <footer className="border-t border-border py-10 mt-20">
+          <div className="max-w-5xl mx-auto px-4">
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div className="flex items-center gap-2 text-sm text-text-muted">
+                <span className="text-primary">🛡️</span>
+                <span>&copy; {new Date().getFullYear()} API Guardrails</span>
+                <span className="text-border">·</span>
+                <span>Not legal advice</span>
+              </div>
+              <div className="flex items-center gap-5 text-sm text-text-muted">
+                <a href="/about" className="hover:text-text transition-colors">About</a>
+                <a href="https://github.com/chatde/apiguardrails" target="_blank" rel="noopener noreferrer" className="hover:text-text transition-colors">
+                  GitHub
+                </a>
+                <a href="https://tokenshrink.com" target="_blank" rel="noopener noreferrer" className="hover:text-text transition-colors">
+                  TokenShrink
+                </a>
+                <a href="https://chatde.dev" target="_blank" rel="noopener noreferrer" className="hover:text-text transition-colors">
+                  chatde.dev
+                </a>
+              </div>
             </div>
           </div>
         </footer>
