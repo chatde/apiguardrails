@@ -13,6 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
+  metadataBase: new URL('https://apiguardrails.com'),
   title: 'API Guardrails — AI API Terms of Service Compliance Checker',
   description: 'Free tool to check if your AI API usage complies with provider Terms of Service. Covers OpenAI, Anthropic, Google, Groq, and more.',
   keywords: ['AI', 'API', 'terms of service', 'compliance', 'OpenAI', 'Anthropic', 'guardrails', 'ToS checker'],
@@ -24,7 +25,7 @@ export const metadata = {
     type: 'website',
   },
   twitter: {
-    card: 'summary',
+    card: 'summary_large_image',
     title: 'API Guardrails — AI API ToS Compliance Checker',
     description: 'Check if your AI API usage complies with provider Terms of Service. Free, instant, no signup.',
   },
@@ -50,6 +51,8 @@ export default function RootLayout({ children }) {
               </div>
               <div className="flex items-center gap-5 text-sm text-text-muted">
                 <a href="/about" className="hover:text-text transition-colors">About</a>
+                <a href="/privacy" className="hover:text-text transition-colors">Privacy</a>
+                <a href="/terms" className="hover:text-text transition-colors">Terms</a>
                 <a href="https://github.com/chatde/apiguardrails" target="_blank" rel="noopener noreferrer" className="hover:text-text transition-colors">
                   GitHub
                 </a>
