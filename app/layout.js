@@ -1,11 +1,12 @@
-import { Geist, Geist_Mono } from 'next/font/google';
+import { Syne, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import Navbar from './components/Navbar';
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
+const syne = Syne({
+  variable: '--font-syne',
   subsets: ['latin'],
   display: 'swap',
+  weight: ['400', '500', '600', '700', '800'],
 });
 
 const geistMono = Geist_Mono({
@@ -38,7 +39,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
+    <html lang="en" className={`${syne.variable} ${geistMono.variable}`}>
       <body className="min-h-screen">
         <Navbar />
         <main>{children}</main>
