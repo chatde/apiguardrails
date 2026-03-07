@@ -41,6 +41,21 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${syne.variable} ${geistMono.variable}`}>
       <body className="min-h-screen">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebApplication",
+              "name": "API Guardrails",
+              "url": "https://apiguardrails.com",
+              "applicationCategory": "DeveloperApplication",
+              "description": "Free tool to check if your AI API usage complies with provider Terms of Service.",
+              "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+              "operatingSystem": "Web"
+            })
+          }}
+        />
         <Navbar />
         <main>{children}</main>
         <footer className="border-t border-border py-10 mt-20">
