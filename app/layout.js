@@ -1,6 +1,7 @@
 import { Syne, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import Navbar from './components/Navbar';
+import SmoothScroll from '../components/smooth-scroll';
 
 const syne = Syne({
   variable: '--font-syne',
@@ -56,6 +57,7 @@ export default function RootLayout({ children }) {
             })
           }}
         />
+        <SmoothScroll>
         <Navbar />
         <main>{children}</main>
         <footer className="border-t border-border py-10 mt-20">
@@ -84,6 +86,7 @@ export default function RootLayout({ children }) {
             </div>
           </div>
         </footer>
+        </SmoothScroll>
       </body>
     </html>
   );
