@@ -6,10 +6,11 @@ import ComplianceReport from './ComplianceReport';
 
 const examples = [
   'I want to use OpenAI to power my SaaS chatbot',
+  'Building an autonomous AI agent with Claude tool use',
+  'Multi-agent system orchestrating tasks with no human oversight',
   'I accept user API keys to call Anthropic',
-  'I use Groq free tier for my commercial app',
+  'AI agent with unlimited budget calling GPT-4 in a loop',
   'Building a RAG system with my own API key',
-  'I want to proxy OpenAI requests through my server',
 ];
 
 export default function ComplianceChecker() {
@@ -59,6 +60,7 @@ export default function ComplianceChecker() {
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           onKeyDown={handleKeyDown}
+          maxLength={2000}
           placeholder={'e.g., "I want to use OpenAI\'s API to power my SaaS chatbot" or "I accept user API keys to call Anthropic"'}
           rows={3}
           className="w-full bg-bg border border-border rounded-lg px-4 py-3 text-text placeholder:text-text-muted focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary resize-none font-sans text-sm"

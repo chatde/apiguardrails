@@ -29,7 +29,7 @@ export default function HomePage() {
           {/* Eyebrow */}
           <FadeIn>
             <p className="text-cyan text-xs tracking-[0.3em] uppercase font-mono mb-6 animate-fade-in">
-              ◈ AI Compliance Intelligence
+              ◈ AI Compliance + Agent Security
             </p>
           </FadeIn>
 
@@ -55,8 +55,8 @@ export default function HomePage() {
 
           <FadeIn delay={400}>
             <p className="text-text-secondary text-lg max-w-2xl mx-auto leading-relaxed mb-10">
-              Describe what you&apos;re building and we&apos;ll instantly check compliance with AI provider
-              Terms of Service. Free, instant, no signup required.
+              Check AI API compliance and agent security in seconds. From ToS violations to
+              autonomous agent risks — know what&apos;s allowed before you ship. Free, instant, no signup.
             </p>
           </FadeIn>
 
@@ -69,6 +69,11 @@ export default function HomePage() {
               </div>
               <div className="w-px h-8 bg-border" />
               <div className="text-center">
+                <div className="text-primary text-2xl font-bold">21</div>
+                <div className="text-text-muted text-xs mt-0.5">Rule Categories</div>
+              </div>
+              <div className="w-px h-8 bg-border" />
+              <div className="text-center">
                 <div className="text-primary text-2xl font-bold">&lt;2s</div>
                 <div className="text-text-muted text-xs mt-0.5">Analysis</div>
               </div>
@@ -76,11 +81,6 @@ export default function HomePage() {
               <div className="text-center">
                 <div className="text-primary text-2xl font-bold">Free</div>
                 <div className="text-text-muted text-xs mt-0.5">Forever</div>
-              </div>
-              <div className="w-px h-8 bg-border" />
-              <div className="text-center">
-                <div className="text-primary text-2xl font-bold">Open</div>
-                <div className="text-text-muted text-xs mt-0.5">Source</div>
               </div>
             </div>
           </FadeIn>
@@ -93,6 +93,47 @@ export default function HomePage() {
           <ComplianceChecker />
         </section>
       </FadeIn>
+
+      {/* Agent Security Section */}
+      <section className="mb-24">
+        <FadeIn>
+          <div className="flex items-center gap-4 mb-8">
+            <div className="h-px flex-1 bg-border" />
+            <div className="text-center">
+              <p className="text-xs font-mono text-cyan tracking-[0.2em] uppercase mb-1">New</p>
+              <h2 className="text-xl font-bold">AI Agent Security</h2>
+            </div>
+            <div className="h-px flex-1 bg-border" />
+          </div>
+        </FadeIn>
+        <FadeIn delay={100}>
+          <div className="bg-bg-card border border-border rounded-xl p-8 relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-warning/5 rounded-bl-[100%]" />
+            <p className="text-text-secondary leading-relaxed mb-6">
+              Deploying autonomous AI agents? Our new agent security rules cover the risks most teams miss:
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {[
+                { icon: '⚡', title: 'Autonomous Agents', desc: 'Compliance requirements for unsupervised AI agents making decisions' },
+                { icon: '🔗', title: 'Multi-Agent Systems', desc: 'Rate limit risks when orchestrating agent swarms and pipelines' },
+                { icon: '🔧', title: 'Tool Use & MCP', desc: 'Security guidance for agents with file system, database, and API access' },
+                { icon: '💰', title: 'Spend Control', desc: 'Prevent runaway costs from agent loops — no provider enforces this for you' },
+              ].map((item, i) => (
+                <div key={i} className="flex gap-3 p-3 rounded-lg bg-bg/50 border border-border/50">
+                  <span className="text-xl">{item.icon}</span>
+                  <div>
+                    <h3 className="font-semibold text-sm text-text">{item.title}</h3>
+                    <p className="text-text-muted text-xs mt-0.5">{item.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <p className="text-text-muted text-xs mt-6 font-mono">
+              Try it: type &quot;autonomous AI agent with Claude tool use&quot; in the checker above.
+            </p>
+          </div>
+        </FadeIn>
+      </section>
 
       {/* Provider Coverage */}
       <section className="mb-24">

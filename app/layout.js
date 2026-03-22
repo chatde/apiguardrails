@@ -18,20 +18,20 @@ const geistMono = Geist_Mono({
 
 export const metadata = {
   metadataBase: new URL('https://apiguardrails.com'),
-  title: 'API Guardrails — AI API Terms of Service Compliance Checker',
-  description: 'Free tool to check if your AI API usage complies with provider Terms of Service. Covers OpenAI, Anthropic, Google, Groq, and more.',
-  keywords: ['AI', 'API', 'terms of service', 'compliance', 'OpenAI', 'Anthropic', 'guardrails', 'ToS checker'],
+  title: 'API Guardrails — AI Compliance & Agent Security Checker',
+  description: 'Free tool to check AI API compliance and agent security risks. Covers autonomous agents, multi-agent systems, tool use, spend control, and ToS for OpenAI, Anthropic, Google, Groq, and more.',
+  keywords: ['AI', 'API', 'terms of service', 'compliance', 'AI agent', 'agent security', 'autonomous agent', 'multi-agent', 'OpenAI', 'Anthropic', 'guardrails', 'MCP', 'agentic AI'],
   openGraph: {
-    title: 'API Guardrails — AI API ToS Compliance Checker',
-    description: 'Check if your AI API usage complies with provider Terms of Service. Free, instant, no signup.',
+    title: 'API Guardrails — AI Compliance & Agent Security',
+    description: 'Check AI API compliance and agent security risks instantly. Autonomous agents, multi-agent systems, tool use, spend control. Free, no signup.',
     url: 'https://apiguardrails.com',
     siteName: 'API Guardrails',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'API Guardrails — AI API ToS Compliance Checker',
-    description: 'Check if your AI API usage complies with provider Terms of Service. Free, instant, no signup.',
+    title: 'API Guardrails — AI Compliance & Agent Security',
+    description: 'Check AI API compliance and agent security risks instantly. Autonomous agents, multi-agent systems, tool use, spend control. Free.',
   },
   alternates: {
     canonical: 'https://apiguardrails.com',
@@ -42,6 +42,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${syne.variable} ${geistMono.variable}`}>
       <body className="min-h-screen">
+        <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-primary focus:text-black focus:rounded">Skip to content</a>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -59,7 +60,7 @@ export default function RootLayout({ children }) {
         />
         <SmoothScroll>
         <Navbar />
-        <main>{children}</main>
+        <main id="main-content">{children}</main>
         <footer className="border-t border-border py-10 mt-20">
           <div className="max-w-5xl mx-auto px-4">
             <div className="flex flex-col sm:flex-row items-center justify-between gap-4">

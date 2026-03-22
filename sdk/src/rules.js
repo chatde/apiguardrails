@@ -270,6 +270,70 @@ const rules = [
       cohere: { verdict: 'allowed', reason: 'Educational applications are supported on paid plans.', tosSection: 'Terms §2' },
     },
   },
+
+  // === AUTONOMOUS AI AGENTS ===
+  {
+    id: 'autonomous-agent',
+    keywords: ['autonomous.*agent', 'ai.*agent', 'auto.*agent', 'agent.*loop', 'agent.*autonom', 'unattended.*ai', 'unsupervised.*agent', 'self.?directed.*ai', 'agent.*no.*human', 'fully.*automat.*agent', 'agentic.*ai', 'agentic.*workflow'],
+    providers: {
+      openai: { verdict: 'warning', reason: 'Autonomous agents are allowed but must comply with usage policies. Human oversight is recommended for high-stakes actions. Automated systems must not impersonate humans without disclosure.', tosSection: 'Usage Policies' },
+      anthropic: { verdict: 'warning', reason: 'Agentic use is supported but requires appropriate safety measures. Anthropic recommends human-in-the-loop for consequential actions. Review the responsible scaling policy.', tosSection: 'Acceptable Use Policy' },
+      google: { verdict: 'warning', reason: 'Autonomous agents must comply with the Generative AI Prohibited Use Policy. Human oversight required for decisions affecting individuals.', tosSection: 'Generative AI Use Policy' },
+      groq: { verdict: 'warning', reason: 'Autonomous agent patterns are allowed but must not circumvent rate limits or abuse the API. Monitor usage carefully.', tosSection: 'Terms §5' },
+      cerebras: { verdict: 'warning', reason: 'Automated use is allowed but the free tier license is revocable. Production agents should use paid plans.', tosSection: 'Terms §4' },
+      sambanova: { verdict: 'warning', reason: 'Automated agent use requires a paid plan. Free tier prohibits production workloads.', tosSection: 'Community Terms §2' },
+      mistral: { verdict: 'warning', reason: 'Agentic workflows are supported. Review safety guidelines for autonomous decision-making.', tosSection: 'Terms §7' },
+      cohere: { verdict: 'warning', reason: 'Agent use is allowed on paid plans. Ensure compliance with acceptable use policy for automated actions.', tosSection: 'Terms §4' },
+    },
+  },
+
+  // === MULTI-AGENT SYSTEMS ===
+  {
+    id: 'multi-agent',
+    keywords: ['multi.?agent', 'agent.*orchestrat', 'agent.*swarm', 'agents.*collaborat', 'agent.*to.*agent', 'chain.*of.*agents', 'agent.*pipeline', 'agent.*fleet', 'crew.*ai', 'autogen', 'langgraph.*agent'],
+    providers: {
+      openai: { verdict: 'warning', reason: 'Multi-agent systems are allowed but each agent call counts toward your rate limits. Ensure no single agent can trigger unbounded API calls. Monitor total spend across all agents.', tosSection: 'Usage Policies' },
+      anthropic: { verdict: 'warning', reason: 'Multi-agent orchestration is supported. Implement spend caps and circuit breakers. Each agent interaction is billed separately.', tosSection: 'API Terms §2' },
+      google: { verdict: 'warning', reason: 'Multi-agent patterns are allowed. Be aware of quota limits across concurrent agent calls. Implement backoff strategies.', tosSection: 'Gemini API Terms' },
+      groq: { verdict: 'warning', reason: 'Multiple concurrent agents may hit rate limits quickly. Implement queuing and backoff. Do not circumvent rate limits.', tosSection: 'Terms §5' },
+      cerebras: { verdict: 'warning', reason: 'Multi-agent patterns are allowed but monitor usage against plan limits.', tosSection: 'Terms §4' },
+      sambanova: { verdict: 'warning', reason: 'Multi-agent systems require paid plans. Free tier rate limits are restrictive for agent workloads.', tosSection: 'Community Terms §2' },
+      mistral: { verdict: 'warning', reason: 'Agent orchestration is supported. Monitor concurrent usage against your plan limits.', tosSection: 'Terms §3' },
+      cohere: { verdict: 'warning', reason: 'Multi-agent use is allowed on paid plans. Implement spend controls to prevent runaway costs.', tosSection: 'Terms §2' },
+    },
+  },
+
+  // === AI AGENT TOOL USE / FUNCTION CALLING ===
+  {
+    id: 'agent-tool-use',
+    keywords: ['tool.*use', 'function.*call', 'tool.*call', 'agent.*tool', 'agent.*action', 'agent.*execut', 'mcp.*tool', 'mcp.*server', 'agent.*file.*system', 'agent.*database', 'agent.*api.*call', 'agent.*browse', 'agent.*code.*execut'],
+    providers: {
+      openai: { verdict: 'warning', reason: 'Function calling and tool use are core features. However, agents that execute code, modify files, or access external systems must have appropriate sandboxing and human approval for destructive actions.', tosSection: 'Usage Policies' },
+      anthropic: { verdict: 'warning', reason: 'Tool use is a supported feature. Anthropic recommends limiting tool permissions to minimum required scope. Implement human-in-the-loop for irreversible actions like file deletion or financial transactions.', tosSection: 'API Terms §1' },
+      google: { verdict: 'warning', reason: 'Function calling is supported. Ensure agent tool access follows the principle of least privilege. Log all tool invocations for audit.', tosSection: 'Gemini API Terms' },
+      groq: { verdict: 'allowed', reason: 'Tool use via function calling is supported on compatible models.', tosSection: 'Terms §3' },
+      cerebras: { verdict: 'allowed', reason: 'Function calling is available on supported models.', tosSection: 'Terms §1' },
+      sambanova: { verdict: 'allowed', reason: 'Tool use is supported on paid plans with compatible models.', tosSection: 'Community Terms §2' },
+      mistral: { verdict: 'allowed', reason: 'Function calling and tool use are supported features.', tosSection: 'Terms §3' },
+      cohere: { verdict: 'allowed', reason: 'Tool use is a core feature of Command models. Paid plan required for production.', tosSection: 'Terms §2' },
+    },
+  },
+
+  // === AGENT COST / SPEND CONTROL ===
+  {
+    id: 'agent-spend',
+    keywords: ['agent.*cost', 'agent.*spend', 'agent.*budget', 'runaway.*cost', 'unlimited.*loop', 'infinite.*loop.*agent', 'cost.*control.*agent', 'agent.*billing', 'agent.*token.*limit', 'agent.*rate.*limit'],
+    providers: {
+      openai: { verdict: 'warning', reason: 'OpenAI does not enforce per-agent spend limits — you must implement your own. Set max tokens per request, daily spend caps, and circuit breakers. Use the Usage API to monitor costs.', tosSection: 'Billing Terms' },
+      anthropic: { verdict: 'warning', reason: 'Anthropic bills per token with no built-in agent budget controls. Implement spend caps, max output token limits, and automatic shutdown triggers in your application.', tosSection: 'API Terms §3' },
+      google: { verdict: 'warning', reason: 'Google Cloud billing can be capped at the project level, but individual agent spend limits must be implemented by you. Set budget alerts in Google Cloud Console.', tosSection: 'Gemini API Terms' },
+      groq: { verdict: 'warning', reason: 'Groq rate limits provide some natural protection, but implement your own spend tracking for agent workloads to avoid unexpected bills.', tosSection: 'Terms §5' },
+      cerebras: { verdict: 'warning', reason: 'Monitor agent usage against your plan limits. Implement spend caps in your application.', tosSection: 'Terms §4' },
+      sambanova: { verdict: 'warning', reason: 'Paid plan billing requires your own spend controls for agent workloads.', tosSection: 'Community Terms §2' },
+      mistral: { verdict: 'warning', reason: 'Implement token-level and monetary spend caps. Mistral does not provide per-agent budget controls.', tosSection: 'Terms §3' },
+      cohere: { verdict: 'warning', reason: 'Monitor agent API usage carefully. Implement daily caps and circuit breakers to prevent runaway costs.', tosSection: 'Terms §2' },
+    },
+  },
 ];
 
 // Provider name aliases for fuzzy matching
@@ -313,7 +377,7 @@ function detectProviders(text) {
 export function analyzeCompliance(description) {
   if (!description || typeof description !== 'string' || description.trim().length < 3) return [];
 
-  const text = description.toLowerCase();
+  const text = description.slice(0, 2000).toLowerCase();
   const findings = [];
   const mentionedProviders = detectProviders(text);
 
