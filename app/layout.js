@@ -2,6 +2,7 @@ import { Syne, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import Navbar from './components/Navbar';
 import SmoothScroll from '../components/smooth-scroll';
+import { Analytics } from '@vercel/analytics/next';
 
 const syne = Syne({
   variable: '--font-syne',
@@ -88,6 +89,7 @@ export default function RootLayout({ children }) {
           </div>
         </footer>
         </SmoothScroll>
+        <Analytics />
       </body>
     </html>
   );
